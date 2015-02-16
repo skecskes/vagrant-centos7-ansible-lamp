@@ -16,6 +16,6 @@ I am using CentOS 7 image from [somewhere](https://f0fff3908f081cb6461b407be80da
 
 - Apache 2.4.6
 - php 5.6.5
-- mysql community 5.6.22
+- mySql MariaDB 5.5.41
 - phpinfo() on http://10.0.0.10
 - phpmyadmin on http://10.0.0.10:9000

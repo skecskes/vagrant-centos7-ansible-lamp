@@ -11,7 +11,7 @@ if [ ! -d "$DIRECTORY" ]; then
     # cp -f /vagrant/config/symfony/parameters.yml /var/www/symfony/app/config/parameters.yml
 
     echo "Copy apache conf"
-    cp -r files/apache/phpmyadmin.tpl /etc/httpd/conf.d/phpmyadmin.conf
+    cp -r ./files/apache/phpmyadmin.tpl /etc/httpd/conf.d/phpmyadmin.conf
 
     echo "Setting firewall rules for phpmyadmin"
     firewall-cmd --zone=public --add-port=9000/tcp --permanent
