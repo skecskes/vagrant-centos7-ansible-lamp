@@ -1,0 +1,95 @@
+---
+ - hosts: all
+
+
+   handlers:
+
+   - name: restart iptables
+     service: name=iptables state=restarted
+
+   - name: restart httpd
+     service: name=httpd state=restarted
+
+   vars:
+     # used in apache vhost configuration files
+     doc_root: /var/www/html
+     composer_path: /usr/local/bin/composer
+
+   tasks:
+
+   - name: Set up firewall
+     shell: systemctl enable firewalld
+     shell: systemctl start firewalld
+
+   - name: Install nano, git, etc
+     yum: pkg={{ item }} state=installed
+     with_items:
+        - git
+        - nano
+        - curl
+
+   - name: Install Apache web server
+     yum: pkg={{ item }} state=installed
+     with_items:
+        - httpd
+
+   - name: Change default apache vhost
+     template: src=files/apache/default.tpl dest=/etc/httpd/conf.d/000-default.conf
+
+   - name: Set global ServerName for apache config
+     lineinfile: dest=/etc/httpd/conf/httpd.conf line="ServerName localhost"
+
+   - name: SELinux to enforcing
+     shell:  setenforce 0
+     notify:
+       - restart httpd
+
+   - name: Ensure Apache running
+     service: name=httpd state=started enabled=yes
+
+   - name: Add ports 80, 443 to firewall
+     shell:  firewall-cmd --permanent --zone=public --add-service=http
+     shell:  firewall-cmd --zone=public --add-port=80/tcp --permanent
+     shell:  firewall-cmd --zone=public --add-port=443/tcp --permanent
+     shell:  firewall-cmd --reload
+
+   - name: Install Remi repo for php56
+     yum: name=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm state=present
+     yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+
+   - name: Instal php
+     yum: pkg={{ item }} enablerepo=remi,remi-php56 state=present
+     with_items:
+       - php
+       - php-common
+
+   - name: Instal php modules
+     yum: pkg={{ item }} enablerepo=remi,remi-php56 state=present
+     with_items:
+       - php-pecl-apcu
+       - php-cli
+       - php-pear
+       - php-pdo
+       - php-mysqlnd
+       - php-pgsql
+       - php-pecl-mongo
+       - php-sqlite
+       - php-pecl-memcache
+       - php-pecl-memcached
+       - php-gd
+       - php-mbstring
+       - php-mcrypt
+       - php-xml
+     notify:
+     - restart httpd
+
+   - name: Install Composer globally
+     shell:  curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f composer.phar {{ composer_path }} creates={{ composer_path }}
+     tags: [composer, php]
+
+   - name: Flush iptables
+     shell: iptables -F
+
+   # we have synced folder
+   #- name: Copy phpinfo for temporary easier development
+   #  copy: src=templates/var/www/html/phpinfo.php dest=/var/www/html/phpinfo.php  mode=0744
