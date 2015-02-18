@@ -1,6 +1,7 @@
 ---
  - hosts: all
-
+   roles:
+    - mysql
 
    handlers:
 
@@ -14,6 +15,7 @@
      # used in apache vhost configuration files
      doc_root: /var/www/html
      composer_path: /usr/local/bin/composer
+     hostname: vagrantbox
 
    tasks:
 
@@ -40,7 +42,7 @@
      lineinfile: dest=/etc/httpd/conf/httpd.conf line="ServerName localhost"
 
    - name: SELinux to enforcing
-     shell:  setenforce 0
+     command: /sbin/setenforce 0
      notify:
        - restart httpd
 

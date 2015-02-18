@@ -3,7 +3,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "centos-7"
     config.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
-    config.vm.hostname = "vagrant-centos7"
+    config.vm.hostname = "vagrantbox"
 
     config.vm.network :forwarded_port, host: 80, guest: 80, auto_correct: true # website
     config.vm.network :forwarded_port, guest: 443, host: 443, auto_correct: true # ssl
@@ -19,12 +19,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provision :shell, path: "vagrant.sh"
-    config.vm.provision :shell, path: "mysql.sh"
-    config.vm.provision :shell, path: "phpmyadmin.sh"
 
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "playbook.yml"
         ansible.sudo = true
         #ansible.inventory_path = "playbooks"
     end
+    config.vm.provision :shell, path: "phpmyadmin.sh"
+
 end
