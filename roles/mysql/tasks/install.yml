@@ -6,5 +6,6 @@
     - mariadb-server
     - mariadb
     - MySQL-python
-  notify:
-    - Start the MySQL service
+
+- name: Start the MySQL service
+  service: name=mariadb state=started enabled=true
