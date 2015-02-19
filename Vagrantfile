@@ -18,13 +18,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
     end
 
-    config.vm.provision :shell, path: "vagrant.sh"
-
     config.vm.provision "ansible" do |ansible|
-        ansible.playbook = "playbook.yml"
+        ansible.playbook = "ansible/playbook.yml"
         ansible.sudo = true
         #ansible.inventory_path = "playbooks"
     end
-    config.vm.provision :shell, path: "phpmyadmin.sh"
+
+    config.vm.provision :shell, inline: "echo Good job, now enjoy your new vbox: http://10.0.0.10"
 
 end

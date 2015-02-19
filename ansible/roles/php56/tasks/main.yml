@@ -1,0 +1,5 @@
+# file: roles/php/tasks/main.yml
+---
+
+- include: install.yml
+- include: configure.yml

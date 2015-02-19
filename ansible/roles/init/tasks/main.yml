@@ -1,0 +1,13 @@
+# file: roles/init/tasks/main.yml
+---
+
+- name: Set up firewall
+  shell: systemctl enable firewalld
+  shell: systemctl start firewalld
+
+- name: Install nano, git, etc
+  yum: pkg={{ item }} state=installed
+  with_items:
+     - git
+     - nano
+     - curl

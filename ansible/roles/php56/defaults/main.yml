@@ -1,0 +1,4 @@
+# file: roles/php/defaults/main.yml
+---
+
+composer_path: /usr/local/bin/composer

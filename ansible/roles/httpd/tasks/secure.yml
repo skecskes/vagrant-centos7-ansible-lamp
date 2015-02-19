@@ -1,0 +1,10 @@
+# file: roles/httpd/tasks/secure.yml
+
+- name: Add ports 80, 443 to firewall
+  shell:  firewall-cmd --permanent --zone=public --add-service=http
+  shell:  firewall-cmd --zone=public --add-port=80/tcp --permanent
+  shell:  firewall-cmd --zone=public --add-port=443/tcp --permanent
+  shell:  firewall-cmd --reload
+
+- name: Flush iptables
+  shell: iptables -F

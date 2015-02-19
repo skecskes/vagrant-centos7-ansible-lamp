@@ -1,0 +1,10 @@
+# file: roles/playbook.yml
+---
+ - hosts: all
+
+   roles:
+    - init
+    - httpd
+    - php56
+    - mysql
+    - phpmyadmin
