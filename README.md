@@ -1,6 +1,9 @@
 Vagrant Centos 7 lamp using Ansible playbook
 =========================================
 
+[![Issues](https://img.shields.io/github/issues/skecskes/vagrant-centos7-ansible-lamp.svg?style=plastic)](https://github.com/skecskes/vagrant-centos7-ansible-lamp/issues) [![Forks](https://img.shields.io/github/forks/skecskes/vagrant-centos7-ansible-lamp.svg?style=plastic)](https://github.com/skecskes/vagrant-centos7-ansible-lamp/network) [![Stars](https://img.shields.io/github/stars/skecskes/vagrant-centos7-ansible-lamp.svg?style=plastic)](https://github.com/skecskes/vagrant-centos7-ansible-lamp/stargazers) [![License](https://img.shields.io/badge/license-GPLv2-blue.svg?style=plastic)](LICENSE)
+
+
 This personal development VM with Ansible provisioning is **fully working example**. I created this VM in order to have a proper php testbed for my php applications. After vagrant up, the main url will welcome you with phpinfo(). I hope you will enjoy this VM and I always accept recommendations and requests.
 
 ## Guest OS
