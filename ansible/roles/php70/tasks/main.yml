@@ -1,4 +1,4 @@
-# file: roles/php56/tasks/main.yml
+# file: roles/php70/tasks/main.yml
 ---
 
 - include: install.yml

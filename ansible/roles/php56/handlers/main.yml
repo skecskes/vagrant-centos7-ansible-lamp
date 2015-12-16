@@ -1,8 +1,5 @@
-# file: roles/php/handlers/main.yml
+# file: roles/php56/handlers/main.yml
 ---
 
-- name: restart iptables
-  service: name=iptables state=restarted
 
-- name: restart httpd
-  service: name=httpd state=restarted
+

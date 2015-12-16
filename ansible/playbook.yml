@@ -1,10 +1,11 @@
-# file: roles/playbook.yml
+# file: ansible/playbook.yml
 ---
  - hosts: all
 
    roles:
     - init
     - httpd
-    - php56
+    #- php56
+    - php70
     - mysql
     - phpmyadmin

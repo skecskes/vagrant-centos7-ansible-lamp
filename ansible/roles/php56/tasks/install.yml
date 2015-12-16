@@ -1,4 +1,4 @@
-# file: roles/php/tasks/install.yml
+# file: roles/php56/tasks/install.yml
 
 - name: Install epel from remote repo
   yum: name=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present
@@ -9,13 +9,13 @@
 - name: upgrade all packages
   yum: name=* state=latest
 
-- name: Instal php
+- name: Install php
   yum: pkg={{ item }} enablerepo=remi,remi-php56 state=present
   with_items:
     - php
     - php-common
 
-- name: Instal php modules
+- name: Install php modules
   yum: pkg={{ item }} enablerepo=remi,remi-php56 state=present
   with_items:
     - php-pecl-apcu
