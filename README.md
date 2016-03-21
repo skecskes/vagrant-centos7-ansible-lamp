@@ -20,7 +20,8 @@ I am using the lastest CentOS 7 x64 image from official [Hashicorp](https://atla
 - [Virtualbox platform](https://www.virtualbox.org/wiki/Downloads)
 - [Vagrant](https://docs.vagrantup.com/v2/installation/) 
 - guest additions to Vagrant `vagrant plugin install vagrant-vbguest`
-- [Git]()
+- [Git](https://git-scm.com/)
+- rsync
 
 ## How to run
 
