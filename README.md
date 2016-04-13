@@ -49,7 +49,7 @@ from internet, which in my case took 8 minutes and will save it locally so that 
 
 ## What is included
 
-### Tag 1.0
+### Tag 0.1.0
 
 - Apache 2.4.6
 - latest php 5.6.*
@@ -58,7 +58,7 @@ from internet, which in my case took 8 minutes and will save it locally so that 
 - phpmyadmin on http://10.0.0.10:9000 (latest version is cloned into vagrantbox)
 
 
-### Tag 2.0
+### Tag 0.2.0
 
 Same as previous, but latest PHP 7.0.* (php7) is used
 
