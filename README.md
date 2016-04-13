@@ -18,28 +18,34 @@ I am using the lastest CentOS 7 x64 image from official [Hashicorp](https://atla
 ## Prerequisites / Requirements
 
 - [Virtualbox platform](https://www.virtualbox.org/wiki/Downloads)
-- [Vagrant](https://docs.vagrantup.com/v2/installation/) 
+- [Vagrant](https://docs.vagrantup.com/v2/installation/)
 - guest additions to Vagrant `vagrant plugin install vagrant-vbguest`
 - [Git](https://git-scm.com/)
+- [Ansible](http://docs.ansible.com/ansible/intro_installation.html)
 - rsync
 
 ## How to run
 
 Create your new folder for your project. Clone this repository into that folder, which will download all configuration
-needed to run vagrant machine. Then just run `vagrant up` in terminal and the rest will be done automatically.
+needed to run vagrant machine. Then just run `vagrant up` in terminal and the rest will be done automatically. Open up 
+terminal and run these commands:
 
+	$ cd /var/www
+	$ mkdir project
+	$ cd project
+	$ git clone https://github.com/skecskes/vagrant-centos7-ansible-lamp.git
+	$ cd vagrant-centos7-ansible-lamp/
+	$ vagrant up
+
+Your /var/www/project folder will be synced with with vagrants apache root directory. 
 Note, that if you run it first time, vagrant will download the guest OS (414 MB of Centos 7 in this case) box 
-from internet, which in my case took 8 minutes and will save it locally so that you can use it later.
+from internet, which in my case took 8 minutes and will save it locally so that vagrant can use it later.
 
-1. open terminal
-2. $ *cd /var/www*
-3. $ *mkdir project*
-4. $ *cd project*
-5. $ *git clone git@github.com:skecskes/vagrant-centos7-ansible-lamp.git*
-6. $ *vagrant up*
-7. Enjoy
+![installation](installation.png)
 
-Your /var/www/project folder will be synced with with vagrants apache root directory.
+## Licence
+
+[GNU GENERAL PUBLIC LICENSE](https://github.com/skecskes/vagrant-centos7-ansible-lamp/blob/master/LICENSE)
 
 ## What is included
 
